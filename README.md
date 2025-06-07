@@ -21,7 +21,9 @@
 ## Przykład działania (konsola)
 
 
-project.exe test.json wynik.xml
+project.exe test.json wynik.xml 
+
+* Upewnij się, że plik .json zawiera prawidłowy format JSON (z klamrami, cudzysłowami itd.) i jest w tej samej lokacji
 
 ---
 
