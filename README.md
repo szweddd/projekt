@@ -56,6 +56,14 @@ Wygenerowany plik project.exe jest dostępny jako artifact w zakładce Actions.
 
 ---
 
+## Dokumentacja
+
+Konfiguracja GitHub Actions została przygotowana na podstawie oficjalnej dokumentacji:
+
+https://docs.github.com/en/actions
+
+---
+
 ## Autor
 
 Oskar 58081, informatyka 1rok, 2sem.
