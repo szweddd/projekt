@@ -4,6 +4,8 @@ import os
 import json
 import yaml
 import xml.etree.ElementTree as ET
+import threading
+
 
 def convert_file(input_path, output_path):
     try:
@@ -66,7 +68,8 @@ def start_conversion():
     if not input_path or not output_path:
         messagebox.showwarning("Uwaga", "Podaj oba pliki.")
         return
-    convert_file(input_path, output_path)
+    threading.Thread(target=convert_file, args=(input_path, output_path)).start()
+
 
 
 # UI
