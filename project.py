@@ -70,6 +70,21 @@ def main():
         except Exception as e:
             print(f"Błąd podczas zapisu do pliku .yml: {e}")
             sys.exit(1)
+    elif output_path.endswith('.xml'):
+        try:
+            root = ET.Element("root")
+            for key, value in data.items():
+                element = ET.SubElement(root, key)
+                element.text = str(value)
+            tree = ET.ElementTree(root)
+            tree.write(output_path, encoding="utf-8", xml_declaration=True)
+            print(f"Zapisano dane do pliku {output_path}")
+        except Exception as e:
+            print(f"Błąd podczas zapisu do pliku .xml: {e}")
+            sys.exit(1)
+        else:
+            print("Błąd: Nieobsługiwany format wyjściowy.")
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
