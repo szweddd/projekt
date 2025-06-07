@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 
 def validate_file_extension(filename):
     valid_extensions = ['.json', '.xml', '.yml', '.yaml']
@@ -20,6 +21,23 @@ def main():
 
     print(f"Plik wejściowy: {input_path}")
     print(f"Plik wyjściowy: {output_path}")
+
+    try:
+        with open(input_path, 'r', encoding='utf-8') as file:
+            if input_path.endswith('.json'):
+                data = json.load(file)
+                print("Plik .json został poprawnie wczytany.")
+            else:
+                data = None  # inne formaty później
+    except json.JSONDecodeError as e:
+        print(f"Błąd składni JSON: {e}")
+        sys.exit(1)
+    except FileNotFoundError:
+        print(f"Błąd: plik {input_path} nie istnieje.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Inny błąd: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
