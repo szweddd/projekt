@@ -82,9 +82,6 @@ def main():
         except Exception as e:
             print(f"Błąd podczas zapisu do pliku .xml: {e}")
             sys.exit(1)
-        else:
-            print("Błąd: Nieobsługiwany format wyjściowy.")
-            sys.exit(1)
-
+            
 if __name__ == "__main__":
     main()
