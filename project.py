@@ -34,7 +34,7 @@ def main():
             else:
                 print("Błąd: Nieobsługiwany format wejściowy.")
                 sys.exit(1)
-                
+
     except json.JSONDecodeError as e:
         print(f"Błąd składni JSON: {e}")
         sys.exit(1)
@@ -51,6 +51,14 @@ def main():
                 print(f"Zapisano dane do pliku {output_path}")
         except Exception as e:
             print(f"Błąd podczas zapisu do pliku .json: {e}")
+            sys.exit(1)
+    elif output_path.endswith(('.yml', '.yaml')):
+        try:
+            with open(output_path, 'w', encoding='utf-8') as outfile:
+                yaml.dump(data, outfile, allow_unicode=True)
+                print(f"Zapisano dane do pliku {output_path}")
+        except Exception as e:
+            print(f"Błąd podczas zapisu do pliku .yml: {e}")
             sys.exit(1)
 
 if __name__ == "__main__":
