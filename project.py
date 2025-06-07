@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import yaml
+import xml.etree.ElementTree as ET
 
 def validate_file_extension(filename):
     valid_extensions = ['.json', '.xml', '.yml', '.yaml']
@@ -31,6 +32,15 @@ def main():
             elif input_path.endswith(('.yml', '.yaml')):
                 data = yaml.safe_load(file)
                 print("Plik .yml został poprawnie wczytany.")
+            elif input_path.endswith('.xml'):
+                try:
+                    tree = ET.parse(file)
+                    root = tree.getroot()
+                    data = {child.tag: child.text for child in root}
+                    print("Plik .xml został poprawnie wczytany.")
+                except ET.ParseError as e:
+                    print(f"Błąd składni XML: {e}")
+                    sys.exit(1)
             else:
                 print("Błąd: Nieobsługiwany format wejściowy.")
                 sys.exit(1)
