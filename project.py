@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import yaml
 
 def validate_file_extension(filename):
     valid_extensions = ['.json', '.xml', '.yml', '.yaml']
@@ -27,8 +28,13 @@ def main():
             if input_path.endswith('.json'):
                 data = json.load(file)
                 print("Plik .json został poprawnie wczytany.")
+            elif input_path.endswith(('.yml', '.yaml')):
+                data = yaml.safe_load(file)
+                print("Plik .yml został poprawnie wczytany.")
             else:
-                data = None  # inne formaty później
+                print("Błąd: Nieobsługiwany format wejściowy.")
+                sys.exit(1)
+                
     except json.JSONDecodeError as e:
         print(f"Błąd składni JSON: {e}")
         sys.exit(1)
