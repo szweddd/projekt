@@ -38,6 +38,14 @@ def main():
     except Exception as e:
         print(f"Inny błąd: {e}")
         sys.exit(1)
+    if output_path.endswith('.json'):
+        try:
+            with open(output_path, 'w', encoding='utf-8') as outfile:
+                json.dump(data, outfile, indent=4, ensure_ascii=False)
+                print(f"Zapisano dane do pliku {output_path}")
+        except Exception as e:
+            print(f"Błąd podczas zapisu do pliku .json: {e}")
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
